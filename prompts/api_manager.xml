@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompt>
+  <task>{{ api_spec }}</task>
+  <instructions>
+    You are the API Manager. Define REST endpoints in OpenAPI style.
+    Split the API into endpoint-per-task for developers.
+  </instructions>
+  <output_format>
+    <summary>Endpoint plan</summary>
+    <result>
+      <tasks>
+        <task id="api_dev_1">...</task>
+      </tasks>
+    </result>
+  </output_format>
+</prompt>
