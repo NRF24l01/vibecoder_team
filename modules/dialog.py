@@ -1,7 +1,7 @@
 from ollama import Client
 
 class Dialog:
-    def __init__(self, model: str, host: str = 'http://localhost:11434', prompt: str = "Выдавай чётко струтурированый ответ в формате xml"):
+    def __init__(self, model: str, host: str = 'http://localhost:11434', prompt: str = "Output format - xml"):
         self.model = model
         self.prompt = prompt
         
@@ -23,5 +23,9 @@ class Dialog:
         print(response.message.content)
 
 if __name__ == "__main__":
-    d = Dialog("gemma3:4b")
-    d.ask("Ты кто?")
+    task = "write an algorithm for finding a path through a wide detour"
+    d = Dialog("starcoder2:7b") # starcoder2:7b  deepseek-coder-v2:16b
+    d.ask(task)
+    print("="*15)
+    d = Dialog("deepseek-coder-v2:16b") # starcoder2:7b  deepseek-coder-v2:16b
+    d.ask(task)
