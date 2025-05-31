@@ -1,0 +1,77 @@
+teams:
+  architect:
+    type: reasoning
+    prompt_file: prompts/architect.xml
+    input_from: user
+    output_to: technical_director
+
+  technical_director:
+    type: reasoning
+    prompt_file: prompts/technical_director.xml
+    input_from: architect
+    output_to:
+      - backend_manager
+      - frontend_manager
+      - api_manager
+      - db_manager
+      - qa_manager
+
+  backend_manager:
+    type: reasoning
+    prompt_file: prompts/backend_manager.xml
+    input_from: technical_director
+    output_to: backend_developer
+
+  backend_developer:
+    type: coding
+    prompt_file: prompts/backend_dev.xml
+    input_from: backend_manager
+    output_to: backend_manager
+
+  frontend_manager:
+    type: reasoning
+    prompt_file: prompts/frontend_manager.xml
+    input_from: technical_director
+    output_to: frontend_developer
+
+  frontend_developer:
+    type: coding
+    prompt_file: prompts/frontend_dev.xml
+    input_from: frontend_manager
+    output_to: frontend_manager
+
+  api_manager:
+    type: reasoning
+    prompt_file: prompts/api_manager.xml
+    input_from: technical_director
+    output_to: api_developer
+
+  api_developer:
+    type: coding
+    prompt_file: prompts/api_dev.xml
+    input_from: api_manager
+    output_to: api_manager
+
+  db_manager:
+    type: reasoning
+    prompt_file: prompts/db_manager.xml
+    input_from: technical_director
+    output_to: db_developer
+
+  db_developer:
+    type: coding
+    prompt_file: prompts/db_dev.xml
+    input_from: db_manager
+    output_to: db_manager
+
+  qa_manager:
+    type: reasoning
+    prompt_file: prompts/qa_manager.xml
+    input_from: technical_director
+    output_to: qa_developer
+
+  qa_developer:
+    type: coding
+    prompt_file: prompts/qa_dev.xml
+    input_from: qa_manager
+    output_to: qa_manager
