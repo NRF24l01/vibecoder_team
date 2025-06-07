@@ -1,0 +1,13 @@
+Please provide your answer ONLY in valid XML format with the following structure:
+<response>
+    <comment>Your thoughts or explanations about the solution</comment>
+    <result>Your actual solution or response to the task</result>
+</response>
+
+Your response must:
+- Contain only valid XML with no text before or after the XML tags
+- Be properly formatted to be parsed by any standard XML reader
+- Wrap your actual answer in the <response> tags
+- Place any explanations in the <comment> tags
+
+Do not include any non-XML content in your response.
