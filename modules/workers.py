@@ -16,6 +16,7 @@ class Coder(Dialog):
         self.logger.info("Start processing task")
         model_response = self.ask(task)
         self.logger.info(f"Time elapsed {t.stop()}")
+        print(model_response)
         comment, result = extract_result(model_response)
         self.logger.info(f"Comment to answer: {comment}")
         return result
@@ -36,7 +37,19 @@ class Lead(Dialog):
         self.logger.info("Start processing task")
         model_response = self.ask(task)
         self.logger.info(f"Time elapsed {t.stop()}")
+        print(model_response)
         comment, result = extract_result(model_response)
         self.logger.info(f"Comment to answer: {comment}")
         return result
+
+if __name__ == "__main__":
+    with open("prompts/main_xml_output.txt", 'r') as f:
+        prompt = f.read()
+    task = "write an algorithm for finding a path through a wide detour"
+    c = Coder()
+    print(c.code(prompt, task, "code"))
+    print("="*15)
+    l = Lead()
+    print(l.think(prompt, task, "lead"))
+    print("="*15)
         
