@@ -2,16 +2,24 @@ from lxml import etree as ET
 import re
 
 def remove_markdown_wrapper(xml_str: str) -> str:
-    # Удаляет markdown обертку ```xml ... ```
-    pattern = r"^```xml\s*(.*?)\s*```$"
+    # Removes markdown wrapper ```xml ... ``` if present
+    # Updated to allow leading whitespace before the markdown block
+    pattern = r"^\s*```xml\s*(.*?)\s*```\s*$"
     match = re.match(pattern, xml_str, re.DOTALL)
     if match:
         return match.group(1).strip()
-    return xml_str.strip()
+    
+    # If input doesn't have markdown wrapper, check if it looks like XML
+    if xml_str.strip().startswith('<') and xml_str.strip().endswith('>'):
+        return xml_str.strip()
+        
+    raise ValueError("Invalid XML format: Expected markdown wrapper with ```xml ... ``` or plain XML content")
 
 def extract_result(xml_response: str):
+    if xml_response is None:
+        return "Error: Empty response", ""
+        
     xml_response = remove_markdown_wrapper(xml_response)
-    print(xml_response)
 
     parser = ET.XMLParser(recover=True)
     tree = ET.fromstring(xml_response.encode('utf-8'), parser=parser)
