@@ -16,9 +16,8 @@ class Coder(Dialog):
         self.logger.info("Start processing task")
         model_response = self.ask(task)
         self.logger.info(f"Time elapsed {t.stop()}")
-        print(model_response)
         comment, result = extract_result(model_response)
-        self.logger.info(f"Comment to answer: {comment}")
+        # self.logger.info(f"Comment to answer: {comment}")
         return result
         
         
@@ -37,9 +36,8 @@ class Lead(Dialog):
         self.logger.info("Start processing task")
         model_response = self.ask(task)
         self.logger.info(f"Time elapsed {t.stop()}")
-        print(model_response)
         comment, result = extract_result(model_response)
-        self.logger.info(f"Comment to answer: {comment}")
+        # self.logger.info(f"Comment to answer: {comment}")
         return result
 
 if __name__ == "__main__":
