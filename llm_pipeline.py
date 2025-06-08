@@ -3,7 +3,6 @@ from ollama import Client
 from pathlib import Path
 
 # === Config ===
-CONFIG_PATH = "config.yaml"
 HOST = "http://127.0.0.1:11434"
 
 with open(CONFIG_PATH, 'r') as f:
