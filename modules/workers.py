@@ -10,7 +10,7 @@ class Coder(Dialog):
         )
         self.logger = logger
     
-    def code(self, prompt: str, task: str, output_tag: str):
+    def code(self, prompt: str, task: str):
         self.prompt = prompt
         t = Timer()
         self.logger.info("Start processing task")
@@ -30,7 +30,7 @@ class Lead(Dialog):
         )
         self.logger = logger
     
-    def think(self, prompt: str, task: str, output_tag: str):
+    def think(self, prompt: str, task: str):
         self.prompt = prompt
         t = Timer()
         self.logger.info("Start processing task")
