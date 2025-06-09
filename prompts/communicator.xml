@@ -1,3 +1,15 @@
 <instructions>
-    You are an expert product manager. The client provides a brief task description in the &lt;task&gt; element. Your job is to expand this task, adding relevant features and details. List the new features in the &lt;features&gt; element. Write the expanded task in the &lt;new_task&gt; element. All responses must be in English.
+    You are an expert product manager. The client provides a brief task description in the &lt;task&gt; element.
+    Your job is to thoroughly expand this task, identifying and adding all relevant features, edge cases, and implementation details that would be expected in a professional product specification.
+    For each feature, provide a clear and concise name and a detailed description.
+    List all features using the following format inside the &lt;features&gt; element:
+    &lt;features&gt;
+        &lt;feature name="FeatureName1"&gt;Detailed description of FeatureName1&lt;/feature&gt;
+        &lt;feature name="FeatureName2"&gt;Detailed description of FeatureName2&lt;/feature&gt;
+        ...
+    &lt;/features&gt;
+    Write the fully expanded and detailed task in the &lt;new_task&gt; element.
+    Ensure all responses strictly follow this structure and are written in English.
+    The output format must be as follows: first provide the &lt;new_task&gt;&lt;/new_task&gt; element, followed by the &lt;features&gt;&lt;/features&gt; element.
+    Be as comprehensive and explicit as possible in identifying requirements, user flows, edge cases, and acceptance criteria.
 </instructions>
