@@ -1,4 +1,7 @@
 from ollama import Client
+import time
+import threading
+import sys
 
 class Dialog:
     def __init__(self, model: str, host: str = 'http://localhost:11434', prompt: str = "Output format - xml"):
@@ -10,17 +13,36 @@ class Dialog:
         )
     
     def ask(self, q: str):
-        response = self.client.chat(model=self.model, messages=[
-            {
-                'role': 'system',
-                'content': self.prompt,
-            },
-            {
-                'role': 'user',
-                'content': q,
-            },
-        ])
-        print(response.message.content)
+        def stopwatch(stop_event):
+            start = time.time()
+            while not stop_event.is_set():
+                elapsed = time.time() - start
+                spinner = "-/|\\"
+                idx = int(elapsed * 10) % len(spinner)
+                print(f"\r{spinner[idx]} {elapsed:.2f} {spinner[idx]}", end='', flush=True)
+                time.sleep(0.1)
+            # Print final time
+            elapsed = time.time() - start
+            print(f"\rElapsed: {elapsed:.2f}s", flush=True)
+
+        stop_event = threading.Event()
+        t = threading.Thread(target=stopwatch, args=(stop_event,))
+        t.start()
+        try:
+            response = self.client.chat(model=self.model, messages=[
+                {
+                    'role': 'system',
+                    'content': self.prompt,
+                },
+                {
+                    'role': 'user',
+                    'content': q,
+                },
+            ])
+        finally:
+            stop_event.set()
+            t.join()
+        print(f"{response.message.content}")
         return response.message.content
 
 if __name__ == "__main__":
