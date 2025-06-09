@@ -34,6 +34,9 @@ def extract_result(xml_response: str):
     result_node = tree.find("result")
 
     summary = summary_node.text.strip() if summary_node is not None and summary_node.text else ""
-    result = ET.tostring(result_node, encoding='unicode', pretty_print=True) if result_node is not None else ""
+    if result_node is not None and result_node.text:
+        result = result_node.text.strip()
+    else:
+        result = ""
 
     return summary, result
